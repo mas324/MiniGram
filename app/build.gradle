@@ -30,8 +30,11 @@ dependencies {
     implementation 'com.parse.bolts:bolts-android:1.4.0'
     //noinspection GradleDependency
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.18.5'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1' // for logging API calls to LogCat
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    // for logging API calls to LogCat
 
     implementation 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    implementation 'commons-io:commons-io:2.5'
 }

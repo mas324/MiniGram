@@ -24,14 +24,20 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.password)
     TextInputEditText password;
     @BindView(R.id.submit)
-    Button button;
+    Button login;
+    @BindView(R.id.register)
+    Button register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        if (ParseUser.getCurrentUser() != null)
+            startActivity(new Intent(this, MainActivity.class));
+
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ParseUser.logInInBackground(username.getText().toString(), password.getText().toString(), new LogInCallback() {
@@ -53,6 +59,13 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        });
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
     }
