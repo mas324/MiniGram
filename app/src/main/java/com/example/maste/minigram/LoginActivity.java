@@ -34,8 +34,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        if (ParseUser.getCurrentUser() != null)
+        if (ParseUser.getCurrentUser() != null) {
             startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

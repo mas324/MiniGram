@@ -11,6 +11,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void done(ParseException e) {
                         if (e == null) {
-                            Log.d("GramPosted", "The post posted");
+                            Log.d("GramPosted", "Successfully posted");
                             description.setText("");
                             picture.setImageBitmap(null);
                         } else {
@@ -87,12 +89,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.logout) {
+            ParseUser.logOut();
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 1001 && resultCode == RESULT_OK) {
             Bitmap new_photo = BitmapFactory.decodeFile(photo.getAbsolutePath());
             picture.setImageBitmap(new_photo);
         } else {
-            Toast.makeText(this, "Picture wasn't taken", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Picture wasn't saved", Toast.LENGTH_SHORT).show();
         }
     }
 }
