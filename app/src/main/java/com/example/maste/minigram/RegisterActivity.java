@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 finish();
                             } else {
                                 Toast.makeText(getApplicationContext(), "Account could not be created", Toast.LENGTH_SHORT).show();
-                                Log.e("GramError", e.getLocalizedMessage());
+                                Log.e("GramAccount", e.getLocalizedMessage());
                             }
                         }
                     });

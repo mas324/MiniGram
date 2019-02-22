@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         if (ParseUser.getCurrentUser() != null) {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
 
@@ -49,15 +49,15 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         } else if (e.getCode() == ParseException.USERNAME_MISSING || e.getCode() == ParseException.PASSWORD_MISSING) {
-                            Log.e("LoginError", e.getLocalizedMessage());
+                            Log.e("GramLogin", e.getLocalizedMessage());
                             Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         } else if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
-                            Log.e("LoginError", e.getLocalizedMessage());
+                            Log.e("GramLogin", e.getLocalizedMessage());
                             Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         } else if (e.getCode() >= ParseException.OTHER_CAUSE) {
-                            Log.e("LoginError", "There was a mighty error logging in");
-                            Log.e("LoginError", Integer.toString(e.getCode()));
-                            Log.e("LoginError", e.getLocalizedMessage());
+                            Log.e("GramLogin", "There was a mighty error logging in");
+                            Log.e("GramLogin", Integer.toString(e.getCode()));
+                            Log.e("GramLogin", e.getLocalizedMessage());
                         }
                     }
                 });
