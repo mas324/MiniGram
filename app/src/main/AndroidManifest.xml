@@ -12,7 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".PostAdapter"></activity>
+        <activity
+            android:name=".fragments.PostsFragment"
+            android:label="@string/title_activity_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RegisterActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

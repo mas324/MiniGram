@@ -1,5 +1,7 @@
 package com.example.maste.minigram;
 
+import android.support.annotation.NonNull;
+
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -8,9 +10,10 @@ import com.parse.ParseUser;
 @ParseClassName("Post")
 public class Post extends ParseObject {
 
-    protected static final String DESC_KEY = "description";
-    protected static final String IMG_KEY = "image";
-    protected static final String USER_KEY = "userPost";
+    public static final String USER_KEY = "userPost";
+    public static final String CREATED_KEY = "createdAt";
+    private static final String DESC_KEY = "description";
+    private static final String IMG_KEY = "image";
 
     public Post() {
     }
@@ -25,23 +28,17 @@ public class Post extends ParseObject {
         return getString(DESC_KEY);
     }
 
-    public void setDesc(String s) {
-        put(DESC_KEY, s);
-    }
-
     public ParseFile getImg() {
         return getParseFile(IMG_KEY);
-    }
-
-    public void setImg(ParseFile f) {
-        put(IMG_KEY, f);
     }
 
     public ParseUser getUser() {
         return getParseUser(USER_KEY);
     }
 
-    public void setUser(ParseUser u) {
-        put(USER_KEY, u);
+    @NonNull
+    @Override
+    public String toString() {
+        return "User: " + getUser().getUsername() + "\nImage: " + getImg().getUrl() + "\nDesc: " + getDesc();
     }
 }
